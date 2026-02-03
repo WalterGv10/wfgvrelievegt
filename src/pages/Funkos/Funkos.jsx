@@ -77,11 +77,6 @@ export default function Funkos() {
                 />
             </div>
 
-            {/* Grid Header */}
-            <div className="text-center py-12 border-t border-white/10 bg-black/50">
-                <h3 className="text-fluid-h2 font-medium">Galería de Coleccionables</h3>
-                <p className="text-white/60 mt-2">Referencias y Pedidos Anteriores</p>
-            </div>
 
             {/* Grid */}
             <section className="px-3 sm:px-6 md:px-8 pb-12 sm:pb-16 bg-black/50">
