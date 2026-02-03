@@ -17,15 +17,28 @@ export default function Home() {
             />
 
             <Hero />
+
+            {/* 1. Gancho Visual: ¿Qué puedo hacer? */}
             <div className="section-below-fold">
                 <Applications />
             </div>
-            <div id="proceso" className="section-below-fold">
-                <Process />
+
+            {/* 2. Autoridad y Razón: ¿Por qué RelieveGt? (Escala, Precisión) */}
+            <div className="section-below-fold">
+                <Differentiator />
             </div>
+
+            {/* 3. Calidad Tangible: ¿De qué está hecho? */}
             <div className="section-below-fold">
                 <Materials />
             </div>
+
+            {/* 4. Confianza: ¿Cómo es el proceso? */}
+            <div id="proceso" className="section-below-fold">
+                <Process />
+            </div>
+
+            {/* 5. Cierre: Acción */}
             <div className="section-below-fold">
                 <ClosingCTA />
             </div>
