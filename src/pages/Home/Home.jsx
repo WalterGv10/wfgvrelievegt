@@ -37,11 +37,6 @@ export default function Home() {
             <div id="proceso" className="section-below-fold">
                 <Process />
             </div>
-
-            {/* 5. Cierre: Acción */}
-            <div className="section-below-fold">
-                <ClosingCTA />
-            </div>
         </div>
     );
 }

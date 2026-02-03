@@ -57,10 +57,6 @@ export default function ProductCard({ product }) {
                         <p className="font-light italic">{product.type}</p>
                     </div>
                 </div>
-
-                <div className="mt-8 px-6 py-2 border border-white/20 rounded-full text-[10px] uppercase tracking-widest text-white/50 group-hover:border-amber-400/50 group-hover:text-amber-400 transition-colors duration-500">
-                    Ver Detalle
-                </div>
             </div>
 
             {/* Bottom Label (Floating feel) */}
@@ -70,9 +66,6 @@ export default function ProductCard({ product }) {
                     <p className="text-fluid-body font-medium text-white drop-shadow-md">
                         {product.name}
                     </p>
-                </div>
-                <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/40 text-xs">
-                    +
                 </div>
             </div>
         </div>

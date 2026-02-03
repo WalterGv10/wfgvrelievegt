@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import TextType from '../TextType/TextType';
 
 export default function Hero() {

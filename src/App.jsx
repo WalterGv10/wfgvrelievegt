@@ -19,9 +19,9 @@ const PageLoader = () => (
     </div>
 );
 
-// Component to handle hash scrolling
+// Component to handle hash scrolling and scroll to top on page navigation
 const ScrollToHash = () => {
-    const { hash } = useLocation();
+    const { hash, pathname } = useLocation();
 
     useEffect(() => {
         if (hash) {
@@ -35,7 +35,7 @@ const ScrollToHash = () => {
         } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    }, [hash]);
+    }, [hash, pathname]);
 
     return null;
 };
@@ -44,10 +44,20 @@ function App() {
     return (
         <div className="relative w-full min-h-screen font-sans antialiased text-amber-100 overflow-x-hidden">
             <ScrollToHash />
-            <div className="fixed inset-0 z-0 pointer-events-none">
+            <div className="fixed inset-0 z-0 pointer-events-none bg-[#050505]">
+                {/* Modern Radial Gradient Overlay for depth */}
+                <div
+                    className="absolute inset-0 z-0"
+                    style={{
+                        background: 'radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 1) 0%, rgba(5, 5, 5, 1) 100%)'
+                    }}
+                />
                 <Waves
-                    lineColor="#ffffff"
-                    backgroundColor="rgba(36, 36, 36, 1)" // Matching home background
+                    lineColor="rgba(251, 191, 36, 0.15)"
+                    glowColor="rgba(251, 191, 36, 0.3)"
+                    glowBlur={20}
+                    showHorizontalLines={true}
+                    backgroundColor="transparent"
                     waveSpeedX={0.0125}
                     waveSpeedY={0.01}
                     waveAmpX={40}
@@ -55,8 +65,18 @@ function App() {
                     friction={0.9}
                     tension={0.01}
                     maxCursorMove={120}
-                    xGap={12}
-                    yGap={36}
+                    xGap={20}
+                    yGap={50}
+                />
+                {/* Vignette effect */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_30%,_rgba(0,0,0,0.6)_100%)]" />
+
+                {/* Subtle Noise Texture */}
+                <div
+                    className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"
+                    style={{
+                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+                    }}
                 />
             </div>
 

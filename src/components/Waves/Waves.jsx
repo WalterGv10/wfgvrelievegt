@@ -90,7 +90,10 @@ const Waves = ({
     tension = 0.005,
     maxCursorMove = 100,
     style = {},
-    className = ''
+    className = '',
+    glowColor = null,
+    glowBlur = 0,
+    showHorizontalLines = false
 }) => {
     const containerRef = useRef(null);
     const canvasRef = useRef(null);
@@ -120,7 +123,10 @@ const Waves = ({
         tension,
         maxCursorMove,
         xGap,
-        yGap
+        yGap,
+        glowColor,
+        glowBlur,
+        showHorizontalLines
     });
     const frameIdRef = useRef(null);
 
@@ -135,9 +141,12 @@ const Waves = ({
             tension,
             maxCursorMove,
             xGap,
-            yGap
+            yGap,
+            glowColor,
+            glowBlur,
+            showHorizontalLines
         };
-    }, [lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap]);
+    }, [lineColor, waveSpeedX, waveSpeedY, waveAmpX, waveAmpY, friction, tension, maxCursorMove, xGap, yGap, glowColor, glowBlur, showHorizontalLines]);
 
     useEffect(() => {
         // console.log('Waves mounted'); 
@@ -224,8 +233,21 @@ const Waves = ({
             const { width, height } = boundingRef.current;
             const ctx = ctxRef.current;
             ctx.clearRect(0, 0, width, height);
+
+            const { lineColor, glowColor, glowBlur, showHorizontalLines } = configRef.current;
+
             ctx.beginPath();
-            ctx.strokeStyle = configRef.current.lineColor;
+            ctx.strokeStyle = lineColor;
+            ctx.lineWidth = 1.25;
+
+            if (glowColor && glowBlur > 0) {
+                ctx.shadowBlur = glowBlur;
+                ctx.shadowColor = glowColor;
+            } else {
+                ctx.shadowBlur = 0;
+            }
+
+            // Vertical lines
             linesRef.current.forEach(points => {
                 let p1 = moved(points[0], false);
                 ctx.moveTo(p1.x, p1.y);
@@ -237,7 +259,28 @@ const Waves = ({
                     if (isLast) ctx.moveTo(p2.x, p2.y);
                 });
             });
+
+            // Horizontal lines (optional for mesh effect)
+            if (showHorizontalLines && linesRef.current.length > 0) {
+                const totalPoints = linesRef.current[0].length;
+                for (let j = 0; j < totalPoints; j++) {
+                    let p1 = moved(linesRef.current[0][j], false);
+                    ctx.moveTo(p1.x, p1.y);
+                    for (let i = 0; i < linesRef.current.length; i++) {
+                        const isLast = i === linesRef.current.length - 1;
+                        p1 = moved(linesRef.current[i][j], !isLast);
+                        const nextLine = linesRef.current[i + 1] || linesRef.current[i];
+                        const p2 = moved(nextLine[j], !isLast);
+                        ctx.lineTo(p1.x, p1.y);
+                        if (isLast) ctx.moveTo(p2.x, p2.y);
+                    }
+                }
+            }
+
             ctx.stroke();
+
+            // Reset shadow to avoid affecting other drawings if any
+            ctx.shadowBlur = 0;
         }
 
         function tick(t) {
