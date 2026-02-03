@@ -1,0 +1,71 @@
+:root {
+    /* Fluid Typography - Clamp drops: (min size, fluid calculation, max size) */
+    /* Calculation: min_size + (max_size - min_size) * ((100vw - min_viewport) / (max_viewport - min_viewport)) */
+
+    /* Hero Headlines (Mobile ~3rem -> Desktop ~6rem) */
+    --font-hero: clamp(2.5rem, 5vw + 1rem, 6rem);
+
+    /* H1 Titles (Mobile ~2rem -> Desktop ~4rem) */
+    --font-h1: clamp(2rem, 4vw + 1rem, 4.5rem);
+
+    /* H2 Section Titles (Mobile ~1.5rem -> Desktop ~3rem) */
+    --font-h2: clamp(1.5rem, 3vw + 1rem, 3.5rem);
+
+    /* H3 Card Titles (Mobile ~1.125rem -> Desktop ~1.5rem) */
+    --font-h3: clamp(1.125rem, 1vw + 0.8rem, 1.75rem);
+
+    /* Body Text (Mobile ~0.875rem -> Desktop ~1.125rem) */
+    --font-body: clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem);
+
+    /* Small/Meta Text (Mobile ~0.75rem -> Desktop ~0.875rem) */
+    --font-small: clamp(0.75rem, 0.4vw + 0.6rem, 0.95rem);
+
+    /* Fluid Spacing */
+    --spacing-section: clamp(3rem, 8vh, 8rem);
+    --spacing-container: clamp(1rem, 5vw, 4rem);
+    --spacing-gap: clamp(1rem, 3vw, 3rem);
+}
+
+/* Utility classes for fluid type */
+.text-fluid-hero {
+    font-size: var(--font-hero);
+    line-height: 1.1;
+}
+
+.text-fluid-h1 {
+    font-size: var(--font-h1);
+    line-height: 1.1;
+}
+
+.text-fluid-h2 {
+    font-size: var(--font-h2);
+    line-height: 1.2;
+}
+
+.text-fluid-h3 {
+    font-size: var(--font-h3);
+    line-height: 1.3;
+}
+
+.text-fluid-body {
+    font-size: var(--font-body);
+}
+
+.text-fluid-small {
+    font-size: var(--font-small);
+}
+
+/* Utility classes for layout */
+.section-padding {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+}
+
+.container-padding {
+    padding-left: var(--spacing-container);
+    padding-right: var(--spacing-container);
+}
+
+.fluid-gap {
+    gap: var(--spacing-gap);
+}

@@ -1,0 +1,20 @@
+.iridescence-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* Fallback */
+    height: 100dvh;
+    /* Mobile viewport optimization */
+    z-index: -1;
+    overflow: hidden;
+    background: black;
+    /* Fallback */
+}
+
+.iridescence-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
