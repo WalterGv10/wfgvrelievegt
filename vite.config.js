@@ -25,14 +25,8 @@ export default defineConfig({
     // Optimize chunk size
     chunkSizeWarningLimit: 1000,
 
-    // Enable minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true,
-      },
-    },
+    // Enable minification (using esbuild by default in Vite)
+    minify: 'esbuild',
 
     // CSS code splitting
     cssCodeSplit: true,
