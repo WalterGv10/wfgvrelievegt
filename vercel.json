@@ -31,7 +31,7 @@
             ]
         },
         {
-            "source": "/(.*).(?:jpg|jpeg|png|gif|webp|avif|svg)",
+            "source": "/(.*)\\.(jpg|jpeg|png|gif|webp|avif|svg)",
             "headers": [
                 {
                     "key": "Cache-Control",
@@ -40,7 +40,7 @@
             ]
         },
         {
-            "source": "/(.*).(?:js|css)",
+            "source": "/(.*)\\.(js|css)",
             "headers": [
                 {
                     "key": "Cache-Control",
